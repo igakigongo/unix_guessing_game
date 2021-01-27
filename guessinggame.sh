@@ -5,15 +5,7 @@ files_count=$(ls -l | egrep "^-"| wc -l)
 
 while read guess
 do
-    if [[ $(echo $guess | egrep -o "^[0-9]+$") ]] # && [[ $guess -eq $files_count ]]
-    then
-        if [[ $guess -eq $files_count ]]
-        then
-            echo "correct" && break
-        else
-            [[ $guess -lt $files_count ]] && echo -n "too low, try again: " || echo -n "too high, try again: "
-        fi
-    else
-        echo -n "not a number, try again: "
-    fi
+    [[ ! $(echo $guess | egrep -o "^-?[0-9]+$") ]] && echo -n "not a number, try again: " && continue
+    [[ $guess -eq $files_count ]] && echo "correct" && break
+    [[ $guess -lt $files_count ]] && echo -n "too low, try again: " || echo -n "too high, try again: "
 done
