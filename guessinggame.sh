@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
+function get_files_count {
+    echo $(ls -l | egrep "^-" | wc -l)
+}
+
 echo -n "Guess the number of files in the current directory: "
-files_count=$(ls -l | egrep "^-"| wc -l)
+files_count=$(get_files_count)
 
 while read guess
 do
