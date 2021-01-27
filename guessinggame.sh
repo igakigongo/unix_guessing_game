@@ -1,13 +1,7 @@
 #!/usr/bin/env bash
 
-# gets all files in the directory
-# excludes hidden files and sub-directories
-function get_files_in_directory {
-    echo $(ls -l | egrep "^-" | wc -l)
-}
-
 echo -n "Guess the number of files in the current directory: "
-files_count=$(get_files_in_directory)
+files_count=$(ls -l | egrep "^-"| wc -l)
 
 while read guess
 do
